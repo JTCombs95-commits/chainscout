@@ -1,0 +1,55 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {}
+}"ghcr.io/stuartleeks/dev-container-features/add-host:1": {}
+{}# httpd.conf or ports.conf
+Listen 8080
+
+<VirtualHost *:8080>
+    ServerName localhost
+    DocumentRoot "/var/www/project"
+
+    <Directory "/var/www/project">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+    # Linux
+sudo systemctl restart apache2
+
+# Windows (XAMPP/WAMP)
+# Use the control panel to stop and start Apache
+    
+3. Configure Nginx to Serve on Port 8088080.
+
+
+server {
+    listen 8080;
+    server_name localhost;
+
+    root /var/www/project;
+    index index.html index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+}
+    
+sudo nginx -s reload
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+app.get('/', (req, res) => {
+  res.send('<b>Running on localhost:8080</b>');
+});
+
+app.listen(PORT, 'localhost', () => {
+  console.log(`Server is live at http://localhost:${PORT}`);
+});
+    
+# src/main/resources/application.properties
+server.port=8080server:
+  port: 8080
+    
